@@ -47,9 +47,9 @@ void loop() {
     if(buzzercount == BUZZ_FREQ){
       //Loop to trigger the buzzer BUZZER_COUNT times
       for(int i = 0; i<BUZZ_COUNT; i++){
-        digitalWrite(BUZZER_PIN, HIGH);
+        setBuzzer(true);
         delay(BUZZ_S_LEN);
-        digitalWrite(BUZZER_PIN, LOW);
+        setBuzzer(false);
         delay((int)BUZZ_S_LEN*0.75);
       }
       buzzercount = 0;
@@ -60,8 +60,25 @@ void loop() {
   }else{
     //No emergency situation
     emergency = false;
+    buzzercount = BUZZ_FREQ-1; //Hacky,  Hacky. Init to this value to make it beep, when the button gets pressed!
     //Not much to do here...
   }
   //update the state of the LED-Stripe. He wants some information too, so we should'nt be bad to him. He's beautiefully
   setEmergency(emergency);
+}
+
+void setBuzzer(bool active){
+  if(active){
+    if(ACTIVE_BUZZ == 1){
+      digitalWrite(BUZZER_PIN, HIGH);
+    }else{
+      tone(BUZZER_PIN, 440);
+    }
+  }else{
+    if(ACTIVE_BUZZ == 1){
+      digitalWrite(BUZZER_PIN, LOW);
+    }else{
+      noTone(BUZZER_PIN);
+    }
+  }
 }
