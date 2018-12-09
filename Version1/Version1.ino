@@ -1,6 +1,5 @@
 #include "config.h"
 #include <TimerOne.h>
-#include "config.h"
 #include "ledstripe.h"
 
 //At the begin of the program, there is no emergency situation.
@@ -10,6 +9,7 @@ void setup() {
   //Config of pins
   pinMode(INPUT_PIN, INPUT_PULLUP);
   pinMode(TLK_PIN, OUTPUT);
+  pinMode(RUN_LED, OUTPUT);
 
   //Timer triggers every 0.1 seconds
   Timer1.initialize(0.1*1000000);
@@ -20,7 +20,7 @@ void setup() {
 }
 
 void loop() {
-  //Is the botton pressed? (Remember: We have a pullup resistor, so check, if the pin gets GND
+  //Is the botton pressed? (Remember: We have a pull-up resistor, so check, if the pin gets some GND
   if(digitalRead(INPUT_PIN) == LOW){
     emergency = true;
     //Trigger the alarm

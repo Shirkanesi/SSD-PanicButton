@@ -6,6 +6,9 @@ int bright = 100;
 bool emergencyState = false;
 bool direct = true;
 
+int c = 0;
+bool ledOn = true;
+
 void updatePixel(){
   //Is currently an emergency?
   if(emergencyState == true){
@@ -29,6 +32,19 @@ void updatePixel(){
   }else{
     //Reset brightnes
     bright = 100;
+
+  }
+
+  //Keep track over the run-LED. It toggles every RUN_LED_LEN seconds.
+  c++;
+  if(c == RUN_LED_LEN*10){
+    if(ledOn){
+      digitalWrite(RUN_LED, HIGH);
+    }else{
+      digitalWrite(RUN_LED, LOW);
+    }
+    c = 0;
+    ledOn = !ledOn;
   }
 }
 

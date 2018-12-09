@@ -7,6 +7,9 @@
 #define TIME_LEN    500       //Time between button press (on TLK_PIN) !needs to be adjusted!
 #define BREAK_LEN   10000     //Time between triggers
 
+#define RUN_LED     5         //Pin of the LED, which shows the scripts activity
+#define RUN_LED_LEN 1         //How long the pulse of the RUN_LED is (Seconds)
+
 /**
  * PIN-Layout:
  * INPUT_PIN  ->  Input-Buton
