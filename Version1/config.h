@@ -16,3 +16,5 @@
  * TLK_PIN    ->  Pin to walki talki
  * LED_PIN    ->  Data-IN-Pin of the LED-Stripe
  */
+
+ //TODO: BUZZER
