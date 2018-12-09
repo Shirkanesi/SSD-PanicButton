@@ -3,6 +3,7 @@
 #include "config.h"
 #include "ledstripe.h"
 
+//At the begin of the program, there is no emergency situation.
 bool emergency = false;
 
 void setup() {
@@ -12,6 +13,9 @@ void setup() {
   //Timer triggert alle 0.1 Sekunden
   Timer1.initialize(0.1*1000000);
   Timer1.attachInterrupt(updatePixel);
+
+  //Initialize the NeoPixel(WS2812B)-Stript
+  pixels.begin();
 }
 
 void loop() {
