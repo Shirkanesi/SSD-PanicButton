@@ -1,8 +1,15 @@
-#define NUMPIXELS 2           //Amount of LED-Pixels (WS2812B)
-#define PIN       3           //PIN of WS2812B Data-IN
+#define NUMPIXELS   2         //Amount of LED-Pixels (WS2812B)
+#define LED_PIN     4         //PIN of WS2812B Data-IN
+#define LED_STEP    10        //The step of LED-Fade
 
-#define INPUT_PIN   1         //PIN with input button (extern)
-#define TLK_PIN     2         //PIN with Walki Talki  (intern)
+#define INPUT_PIN   2         //PIN with input button (extern)
+#define TLK_PIN     3         //PIN with Walki Talki  (intern)
 #define TIME_LEN    500       //Time between button press (on TLK_PIN)
 #define BREAK_LEN   10000     //Time between triggers
-#define LED_STEP    10        //The step of LED-Fade
+
+/**
+ * PIN-Layout:
+ * INPUT_PIN  ->  Input-Buton
+ * TLK_PIN    ->  Pin to walki talki
+ * LED_PIN    ->  Data-IN-Pin of the LED-Stripe
+ */
