@@ -7,10 +7,11 @@
 bool emergency = false;
 
 void setup() {
+  //Config of pins
   pinMode(INPUT_PIN, INPUT_PULLUP);
   pinMode(TLK_PIN, OUTPUT);
 
-  //Timer triggert alle 0.1 Sekunden
+  //Timer triggers every 0.1 seconds
   Timer1.initialize(0.1*1000000);
   Timer1.attachInterrupt(updatePixel);
 
@@ -19,8 +20,10 @@ void setup() {
 }
 
 void loop() {
+  //Is the botton pressed? (Remember: We have a pullup resistor, so check, if the pin gets GND
   if(digitalRead(INPUT_PIN) == LOW){
     emergency = true;
+    //Trigger the alarm
     digitalWrite(TLK_PIN, HIGH);
     delay(TIME_LEN);
     digitalWrite(TLK_PIN, LOW);
@@ -30,6 +33,7 @@ void loop() {
     digitalWrite(TLK_PIN, LOW);
     delay(BREAK_LEN);
   }else{
+    //No emergency situation
     emergency = false;
   }
   setEmergency(emergency);

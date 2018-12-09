@@ -2,9 +2,9 @@
 #define LED_PIN     4         //PIN of WS2812B Data-IN
 #define LED_STEP    10        //The step of LED-Fade
 
-#define INPUT_PIN   2         //PIN with input button (extern)
+#define INPUT_PIN   2         //PIN with input button (extern)  !important! Button is NO and needs to switch to GND
 #define TLK_PIN     3         //PIN with Walki Talki  (intern)
-#define TIME_LEN    500       //Time between button press (on TLK_PIN)
+#define TIME_LEN    500       //Time between button press (on TLK_PIN) !needs to be adjusted!
 #define BREAK_LEN   10000     //Time between triggers
 
 /**

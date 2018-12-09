@@ -7,10 +7,13 @@ bool emergencyState = false;
 bool direct = true;
 
 void updatePixel(){
+  //Is currently an emergency?
   if(emergencyState == true){
+    //No time for fancy animation... I hope it's enough for you :-(
     for(int i = 0; i < NUMPIXELS; i++){
       pixels.setPixelColor(i, pixels.Color(0,bright,0));
     }
+    //Show the pixels
     pixels.show();
     if(direct){
       //FadeUP
@@ -24,10 +27,12 @@ void updatePixel(){
       direct = !direct;
     }  
   }else{
+    //Reset brightnes
     bright = 100;
   }
 }
 
+//Set the emergency-state of the system
 void setEmergency(bool emg){
   emergencyState = emg;
 }
