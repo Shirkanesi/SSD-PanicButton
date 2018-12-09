@@ -1,0 +1,6 @@
+Nano Pinout:
+  http://www.circuitstoday.com/wp-content/uploads/2018/02/Arduino-Nano-Pinout.jpg
+Interrupt-Pins:
+  https://www.arduino.cc/reference/en/language/functions/external-interrupts/attachinterrupt/
+Timer Interrupts:
+  https://playground.arduino.cc/Deutsch/HalloWeltMitInterruptUndTimerlibrary
