@@ -4,7 +4,7 @@
 #define INIT_BRIGHT 100       //The initial brightnes of every animation
 
 #define INPUT_PIN   2         //PIN with input button (extern)  !important! Button is N.O. and needs to switch to GND
-#define TLK_PIN     7         //PIN with Walki Talki  (intern)
+#define TLK_PIN     3         //PIN with Walki Talki  (intern)
 #define TIME_LEN    500       //Time between button press (on TLK_PIN) !needs to be adjusted! (miliseconds)
 #define BREAK_LEN   10000     //Time between triggers (miliseconds)
 
@@ -18,7 +18,6 @@
 #define ACTIVE_BUZZ 0         //Decides, wheather the buzzer is active(1) or passiv(0)
 #define FREQUENCY   440       //Frequency of the Buzzer (in Hz). Only avaliable with passive buzzers!
 
-#define RESET_PIN   3         //Button to reset errors
 
 /**
  * PIN-Layout:

@@ -17,7 +17,6 @@ void setup() {
   
   //Config of pins
   pinMode(INPUT_PIN, INPUT_PULLUP);
-  pinMode(RESET_PIN, INPUT_PULLUP);
   pinMode(TLK_PIN, OUTPUT);
   pinMode(RUN_LED, OUTPUT);
 
