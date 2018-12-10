@@ -55,7 +55,7 @@ void loop() {
       buzzercount = 0;
     }
 
-    //Wait some time. Without htis, the arduino would always send an alarm, the walki takli gets confused. We don't want that...
+    //Wait some time. Without this, the arduino would always send an alarm, the walki takli gets confused. We don't want that...
     delay(BREAK_LEN);
   }else{
     //No emergency situation
@@ -63,7 +63,7 @@ void loop() {
     buzzercount = BUZZ_FREQ-1; //Hacky,  Hacky. Init to this value to make it beep, when the button gets pressed!
     //Not much to do here...
   }
-  //update the state of the LED-Stripe. He wants some information too, so we should'nt be bad to him. He's beautiefully
+  //update the state of the LED-Stripe. He wants some information too, so we should'nt be bad to him. He's beautiful
   setEmergency(emergency);
 }
 

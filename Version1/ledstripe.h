@@ -1,11 +1,18 @@
 #include <Adafruit_NeoPixel.h>
 
+//Tell the friendly pixels, how many the are...
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, LED_PIN, NEO_GRB + NEO_KHZ800);
 
-int bright = 100;
-bool emergencyState = false;
+//set the initial brightness
+int bright = INIT_BRIGHT;
+
+//The direction of the fading animation. true is fading up and false is fading down. Changes over time
 bool direct = true;
 
+//There is no emergency, when the arduino gets started!
+bool emergencyState = false;
+
+//c counts the time since the last STATE_LED-blink.
 int c = 0;
 
 void updatePixel(){
@@ -30,7 +37,7 @@ void updatePixel(){
     }  
   }else{
     //Reset brightnes
-    bright = 100;
+    bright = INIT_BRIGHT;
 
   }
 
@@ -39,7 +46,7 @@ void updatePixel(){
   if(c == RUN_LED_LEN*10){
     digitalWrite(RUN_LED, HIGH);
     delay(125);
-    digitalWrite(RUN_LED, LOW);   //Beeinflusst das hier irgendwas?
+    digitalWrite(RUN_LED, LOW);
     c = 0;
   }
 }

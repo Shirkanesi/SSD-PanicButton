@@ -1,6 +1,7 @@
 #define NUMPIXELS   2         //Amount of LED-Pixels (WS2812B)
 #define LED_PIN     4         //PIN of WS2812B Data-IN
 #define LED_STEP    10        //The step of LED-Fade
+#define INIT_BRIGHT 100       //The initial brightnes of every animation
 
 #define INPUT_PIN   2         //PIN with input button (extern)  !important! Button is N.O. and needs to switch to GND
 #define TLK_PIN     3         //PIN with Walki Talki  (intern)
@@ -24,3 +25,5 @@
  * RUN_LED    ->  LED flashing while script runs
  * BUZZER_PIN ->  Buzzer will beep frequently to show the active emergency
  */
+
+ //TODO: Different blink-states --> EEPROM?!?, reset-button?!? ERROR-CODES?
