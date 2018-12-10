@@ -12,8 +12,12 @@ int buzzercount;
 
 
 void setup() {
+
+  Serial.begin(9600);
+  
   //Config of pins
   pinMode(INPUT_PIN, INPUT_PULLUP);
+  pinMode(RESET_PIN, INPUT_PULLUP);
   pinMode(TLK_PIN, OUTPUT);
   pinMode(RUN_LED, OUTPUT);
 
@@ -26,6 +30,8 @@ void setup() {
   
   //Initialize the NeoPixel(WS2812B)-Stript
   pixels.begin();
+
+
 }
 
 void loop() {
@@ -72,7 +78,7 @@ void setBuzzer(bool active){
     if(ACTIVE_BUZZ == 1){
       digitalWrite(BUZZER_PIN, HIGH);
     }else{
-      tone(BUZZER_PIN, 440);
+      tone(BUZZER_PIN, FREQUENCY * random(1, 4));
     }
   }else{
     if(ACTIVE_BUZZ == 1){

@@ -5,6 +5,7 @@ Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, LED_PIN, NEO_GRB + NEO_K
 
 //set the initial brightness
 int bright = INIT_BRIGHT;
+bool ledState = true;
 
 //The direction of the fading animation. true is fading up and false is fading down. Changes over time
 bool direct = true;
@@ -14,6 +15,8 @@ bool emergencyState = false;
 
 //c counts the time since the last STATE_LED-blink.
 int c = 0;
+
+int runMult = 10;
 
 void updatePixel(){
   //Is currently an emergency?
@@ -43,11 +46,13 @@ void updatePixel(){
 
   //Keep track over the run-LED. It toggles every RUN_LED_LEN seconds.
   c++;
-  if(c == RUN_LED_LEN*10){
+  if(c >= RUN_LED_LEN*runMult){
+    runMult = 10;
     digitalWrite(RUN_LED, HIGH);
     delay(125);
     digitalWrite(RUN_LED, LOW);
     c = 0;
+    
   }
 }
 
