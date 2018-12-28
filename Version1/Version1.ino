@@ -12,7 +12,7 @@ int buzzercount;
 
 
 void setup() {
-
+  //For debugging use...
   Serial.begin(9600);
   
   //Config of pins
@@ -46,19 +46,22 @@ void loop() {
     delay(TIME_LEN);                //  some button
     digitalWrite(TLK_PIN, LOW);     //  presses. :P
 
+    setEmergency(true);
+  
     //Increase the loop counter
     buzzercount++;
     //Check, wheather is's time to beep
     if(buzzercount == BUZZ_FREQ){
-      //Loop to trigger the buzzer BUZZER_COUNT times
+      //Loop to trigger the buzzer BUZZ_COUNT times
       for(int i = 0; i<BUZZ_COUNT; i++){
         setBuzzer(true);
         delay(BUZZ_S_LEN);
         setBuzzer(false);
-        delay((int)BUZZ_S_LEN*0.75);
+        delay(BUZZ_S_LEN);
       }
       buzzercount = 0;
     }
+    
 
     //Wait some time. Without this, the arduino would always send an alarm, the walki takli gets confused. We don't want that...
     delay(BREAK_LEN);
@@ -66,9 +69,8 @@ void loop() {
     //No emergency situation
     emergency = false;
     buzzercount = BUZZ_FREQ-1; //Hacky,  Hacky. Init to this value to make it beep, when the button gets pressed!
-    //Not much to do here...
   }
-  //update the state of the LED-Stripe. He wants some information too, so we should'nt be bad to him. He's beautiful
+  //Update the state of the LED-Stripe. He wants some information too, so we should'nt be bad to him. Because he's beautiful
   setEmergency(emergency);
 }
 
