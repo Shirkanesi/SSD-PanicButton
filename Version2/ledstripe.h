@@ -25,24 +25,20 @@ int runMult = 10;
 void noPixel(){
   for(int i = 0; i < NUMPIXELS; i++){
       pixels.setPixelColor(i, pixels.Color(0, 0, 0));
-   }
-   //Show the pixels
-   pixels.show();
+  }
+  //Show the pixels
+  pixels.show();
 }
 
 
 void updatePixel(){
-  //Serial.println(emergencyState);
   //Is currently an emergency?
   if(emergencyState == true){
     res = false;
     //No time for fancy animation... I hope it's enough for you :-(
-    /*for(int i = 0; i < NUMPIXELS - 1; i++){
+    for(int i = 0; i < NUMPIXELS; i++){
       pixels.setPixelColor(i, pixels.Color(bright, 0, 0));
     }
-    pixels.setPixelColor(NUMPIXELS-1, pixels.Color(0, 0, 255));*/
-    pixels.setPixelColor(0, pixels.Color(bright, 0, 0));
-    pixels.setPixelColor(1, pixels.Color(0, 0, 255));
     
     //Show the pixels
     pixels.show();
@@ -57,22 +53,22 @@ void updatePixel(){
     if(bright >= 250 || bright <= 110){
       direct = !direct;
     }  
-
-    pinMode(EMG_LED, OUTPUT);
-    if(emgLEDstate){
-        digitalWrite(EMG_LED, HIGH);
-      }else{
-        digitalWrite(EMG_LED, LOW);
-      }
-      emgLEDstate = !emgLEDstate;
-    
+    if(bright <= 130){
+      digitalWrite(EMG_LED, HIGH);
+      delay(175);
+      digitalWrite(EMG_LED, LOW);
+      delay(125);
+      digitalWrite(EMG_LED, HIGH);
+      delay(175);
+      digitalWrite(EMG_LED, LOW);
+    }
   }else{
     //Reset brightnes
     if(!res){
       res = true;
       bright = INIT_BRIGHT;
       noPixel();
-      pinMode(EMG_LED, INPUT);k
+      digitalWrite(EMG_LED, LOW);
     }
     //Keep track over the run-LED. It toggles every RUN_LED_LEN seconds.
     c++;
@@ -81,11 +77,8 @@ void updatePixel(){
       delay(125);
       digitalWrite(RUN_LED, LOW);
       c = 0;
-    }
-    
+    } 
   }
-
-  
 }
 
 //Set the emergency-state of the system

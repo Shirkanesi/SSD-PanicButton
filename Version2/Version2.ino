@@ -17,9 +17,9 @@ void setup() {
   
   //Config of pins
   pinMode(INPUT_PIN, INPUT_PULLUP);
-  pinMode(TLK_PIN, OUTPUT);
+  pinMode(TLK_PIN, INPUT_PULLUP);
   pinMode(RUN_LED, OUTPUT);
-  pinMode(EMG_LED, INPUT);
+  pinMode(EMG_LED, OUTPUT);
 
   //Timer triggers every 0.1 seconds
   Timer1.initialize(0.1*1000000);
@@ -39,19 +39,16 @@ void loop() {
   if(digitalRead(INPUT_PIN) == LOW){
     emergency = true;
     //Trigger the alarm
-    digitalWrite(TLK_PIN, HIGH);    //  These lines
-    delay(TIME_LEN);                //  are actually
-    digitalWrite(TLK_PIN, LOW);     //  calling for
-    delay(TIME_LEN);                //  help. They
-    digitalWrite(TLK_PIN, HIGH);    //  are emulating
-    delay(TIME_LEN);                //  some button
-    digitalWrite(TLK_PIN, LOW);     //  presses. :P
-
+    pinMode(TLK_PIN, OUTPUT);
+    digitalWrite(TLK_PIN, LOW);    
+    delay(TIME_LEN);      
+    pinMode(TLK_PIN, INPUT_PULLUP);    //We can't connect the walki talki directly to 5V. We have to use the (10k??) pull-up-resistor. 
+    
     setEmergency(true);
   
     //Increase the loop counter
     buzzercount++;
-    //Check, wheather is's time to beep
+    //Check, wheather it's time to beep
     if(buzzercount == BUZZ_FREQ){
       //Loop to trigger the buzzer BUZZ_COUNT times
       for(int i = 0; i<BUZZ_COUNT; i++){
@@ -63,13 +60,16 @@ void loop() {
       buzzercount = 0;
     }
     
-
     //Wait some time. Without this, the arduino would always send an alarm, the walki takli gets confused. We don't want that...
-    delay(BREAK_LEN);
+    delay(4000);
   }else{
     //No emergency situation
     emergency = false;
     buzzercount = BUZZ_FREQ-1; //Hacky,  Hacky. Init to this value to make it beep, when the button gets pressed!
+    bright = INIT_BRIGHT;
+    noPixel();
+    digitalWrite(EMG_LED, LOW);
+    setEmergency(false);
   }
   //Update the state of the LED-Stripe. He wants some information too, so we should'nt be bad to him. Because he's beautiful
   setEmergency(emergency);
